@@ -16,7 +16,7 @@ function [mROM CoV]=kinematic_routine_walking(fileName,PlatformData)
 
 
 data=csv2cell(fileName,";"); 
-platformdata=csv2cell(PlatformData, ";")
+platformdata=csv2cell(PlatformData, ";");
 time_vector_data=cell2mat(data(2:end,1)); %%extract time vector from data
 angle_matrix=cell2mat(data(2:end,2:end)); %%extract angle matrix from data
 angle_label=data(1,2:end); %extract angle label
@@ -37,30 +37,58 @@ fprintf('Same sample frequency')
 end
 
 %%angle partitioning
- if(platformdata(1,2)==1 || platformdata(1,2)==2) %% 1 and 2 represent the two stepping protocol
-event=find(platformdata(:,21)==1); %%21st column of platformdata represents the stride identification performed by the pressure matrix embedded in the platform
-else
- fprintf('You have tried to lunch kinematic_routine_walking with a wrong protocol') 
+if(platformdata{1,2}==1 || platformdata{1,2}==2) %% 1 and 2 represent the two stepping protocol
+event_1r=cell2mat(platformdata(:,21)); %%21st column of platformdata represents the stride identification performed by the pressure matrix embedded in the platform fro right side
+ event_r=find(event_1r==1); 
+event_1l=cell2mat(platformdata(:,23)); %%23rd column of platformdata represents the stride identification performed by the pressure matrix embedded in the platform fro right side
+ event_l=find(event_1l==1);
+ else
+ fprintf('You have tried to lunch EMG_routine with a wrong protocol') 
+ return;
 endif
 
- for e=1:length(event)-1
-   for a=1:angle_number
-   angle_matrix_part(:,a,e)=eventsnormalize(angle_matrix(:,a),[round(event(e)) round(event(e+1))],101); %%normalize the frames within each event
+angle_r=find(~cellfun(@isempty,strfind(angle_label,'r_')));
+angle_l=find(~cellfun(@isempty,strfind(angle_label,'l_')));
+
+
+ for e=1:length(event_r)-1
+   for a=1:length(angle_r)
+   angle_matrix_part_r(:,a,e)=eventsnormalize(angle_matrix(:,angle_r(a)),[round(event_r(e)) round(event_r(e+1))],101); %%normalize the frames within each event
  end
 end  
 
-for i=1:size(angle_matrix_part,3)
-  for a=1:angle_number
-  ROM(i,a)=abs(max(angle_matrix_part(:,a,i))-min(angle_matrix_part(:,a,i)));  %%compute the range of motion for each stride during the task
+for ee=1:length(event_l)-1
+   for aa=1:length(angle_l)
+   angle_matrix_part_l(:,aa,ee)=eventsnormalize(angle_matrix(:,angle_l(aa)),[round(event_l(ee)) round(event_l(ee+1))],101); %%normalize the frames within each event
+ end
+end  
+
+for i=1:size(angle_matrix_part_r,3)
+  for a=1:length(angle_r)
+  ROM_r(i,a)=abs(max(angle_matrix_part_r(:,a,i))-min(angle_matrix_part_r(:,a,i)));  %%compute the range of motion for each stride during the task
   end
 end
 
-for a=1:angle_number
-  mROM_i(1,a)=mean(ROM(:,a),1); %%mean value of the ROM for each angle across the repetitions of strides or perturbations
-  CoV_i(1,a)=std(ROM(:,a))/mean(ROM(:,a),1); %%variability of the ROM across the repetitions of strides or perturbations
+for ii=1:size(angle_matrix_part_l,3)
+  for aa=1:length(angle_l)
+  ROM_l(ii,aa)=abs(max(angle_matrix_part_l(:,aa,ii))-min(angle_matrix_part_r(:,aa,ii)));  %%compute the range of motion for each stride during the task
+  end
 end
 
 
+for a=1:length(angle_r)
+  mROM_i_r(1,a)=mean(ROM_r(:,a),1); %%mean value of the ROM for each angle across the repetitions of strides or perturbations
+  CoV_i_r(1,a)=std(ROM_r(:,a))/mean(ROM_r(:,a),1); %%variability of the ROM across the repetitions of strides or perturbations
+end
 
-mROM=cat(1,angle_label,num2cell(mROM_i)); %%add the header line with angle labels
-CoV=cat(1,angle_label,num2cell(CoV_i));
+for aa=1:length(angle_l)
+  mROM_i_l(1,aa)=mean(ROM_l(:,aa),1); %%mean value of the ROM for each angle across the repetitions of strides or perturbations
+  CoV_i_l(1,aa)=std(ROM_l(:,aa))/mean(ROM_l(:,aa),1); %%variability of the ROM across the repetitions of strides or perturbations
+end
+
+mROM_r=cat(1,angle_label(angle_r),num2cell(mROM_i_r)); %%add the header line with angle labels
+CoV_r=cat(1,angle_label(angle_r),num2cell(CoV_i_r));
+mROM_l=cat(1,angle_label(angle_l),num2cell(mROM_i_l)); %%add the header line with angle labels
+CoV_l=cat(1,angle_label(angle_l),num2cell(CoV_i_l));
+mROM=cat(2,mROM_r,mROM_l);
+CoV=cat(2,CoV_r,CoV_l);

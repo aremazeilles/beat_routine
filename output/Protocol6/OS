@@ -1,0 +1,111 @@
+# Created by Octave 5.1.0, Tue Apr 14 14:54:14 2020 GMT <unknown@JuriTaborri>
+# name: OS
+# type: cell
+# rows: 2
+# columns: 8
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+N
+
+
+# name: <cell-element>
+# type: scalar
+67.035123273819025
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NE
+
+
+# name: <cell-element>
+# type: scalar
+67.630477700912536
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+E
+
+
+# name: <cell-element>
+# type: scalar
+67.187048991005653
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SE
+
+
+# name: <cell-element>
+# type: scalar
+67.42032359008833
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+S
+
+
+# name: <cell-element>
+# type: scalar
+67.230314826028092
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SW
+
+
+# name: <cell-element>
+# type: scalar
+67.140539152668822
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+W
+
+
+# name: <cell-element>
+# type: scalar
+67.873219533313076
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NW
+
+
+# name: <cell-element>
+# type: scalar
+67.402742233301481
+
+
+
+
+

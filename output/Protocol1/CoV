@@ -1,0 +1,241 @@
+# Created by Octave 5.1.0, Tue Apr 14 20:06:16 2020 GMT <unknown@JuriTaborri>
+# name: CoV
+# type: cell
+# rows: 2
+# columns: 18
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+r_hip_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.92317585568219862
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+r_hip_adduction
+
+
+# name: <cell-element>
+# type: scalar
+0.87480072677826393
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+r_hip_rotation
+
+
+# name: <cell-element>
+# type: scalar
+0.76616019613835673
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+r_knee_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.861827339881858
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+r_knee_adduction
+
+
+# name: <cell-element>
+# type: scalar
+1.98389291562862
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+r_knee_rotation
+
+
+# name: <cell-element>
+# type: scalar
+1.3441383343185902
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+r_ankle_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.82938546070357877
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+r_ankle_adduction
+
+
+# name: <cell-element>
+# type: scalar
+0.84504310077552702
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+r_ankle_rotation
+
+
+# name: <cell-element>
+# type: scalar
+0.61049938986817642
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 13
+l_hip_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.92317585568219862
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+l_hip_adduction
+
+
+# name: <cell-element>
+# type: scalar
+0.87480072677826393
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+l_hip_rotation
+
+
+# name: <cell-element>
+# type: scalar
+0.76616019613835673
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 14
+l_knee_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.861827339881858
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+l_knee_adduction
+
+
+# name: <cell-element>
+# type: scalar
+1.98389291562862
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+l_knee_rotation
+
+
+# name: <cell-element>
+# type: scalar
+1.3441383343185902
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 15
+l_ankle_flexion
+
+
+# name: <cell-element>
+# type: scalar
+0.82938546070357877
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 17
+l_ankle_adduction
+
+
+# name: <cell-element>
+# type: scalar
+0.84504310077552702
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 16
+l_ankle_rotation
+
+
+# name: <cell-element>
+# type: scalar
+0.61049938986817642
+
+
+
+
+

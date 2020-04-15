@@ -9,23 +9,22 @@ function [PL_p EA_p]=posturographic_routine_perturbation(PlatformData)
 %       - EA is the area of confidence ellipse of the COP during the task in the medio-lateral direction. Result is a cell 2xNd, where Nd is the number of perturbation direction(units: m2)
 % $Author: J. TABORRI, v1 - 04/Apr/2020$ (BEAT project)
 
-platformdata=csv2cell(PlatformData, ";")
-cop=platformdata(:,18:19)*0.001; %column 18 and 19 contain data of COP extracted from the pressure matrix converted in m
+platformdata=csv2cell(PlatformData, ";");
+cop=cell2mat(platformdata(:,18:19))*0.001; %column 18 and 19 contain data of COP extracted from the pressure matrix converted in m
 z=chi2inv(0.95,2); %%compute the probability associated with 0.95 confidence level (chi distribution)
-
+direction=cell2mat(platformdata(:,20));
 %%understand which is the protocol
-if (platformdata(1,2)==7) %%7 represents the sinusoidal perturbation protocol
-a=2;
- elseif platformdata(1,2)==5 || platformdata(1,2)==6) %%5 and 6 represent protocol of step perturbation
- a=1;
+if (platformdata{1,2}==7) %%7 represents the sinusoidal perturbation protocol
+aa=2;
+ elseif (platformdata{1,2}==5 || platformdata{1,2}==6) %%5 and 6 represent protocol of step perturbation
+ aa=1;
 else
  fprintf('You have tried to lunch posturographic_routine with a wrong protocol') 
 endif
 
-if a=1;
+if aa==1;
   for d=1:8 %%number of directions in case of step perturbations
-COP=cop(platformdata((:,20)==i,:); 
-COP=cop(event(e):event(e+1),:); %%divide COP into the events (perturbations)
+COP=cop(direction(:,1)==d,:); 
 PL_i(d)=sum(sqrt((diff(COP(:,1)).^2) + (diff(COP(:,2)).^2))); %%path lenght resultant
 %%compute ellipse
 o(:,:,d)=mean(COP(:,:),1); %%center of the confidence ellipse
@@ -49,9 +48,9 @@ PL_p=cat(1,direction,num2cell(PL_i)); %%add the header line with direction label
 EA_p=cat(1,direction,num2cell(EA_i)); %%add the header line with direction label
 
 
-else a=2 
+else aa==2 
  for d=1:4 %%number of directions in case of sinusoidal perturbations
-COP=cop(platformdata((:,20)==i,:); 
+COP=cop(direction(:,1)==d,:); 
 PL_i(d)=sum(sqrt((diff(COP(:,1)).^2) + (diff(COP(:,2)).^2))); %%path lenght resultant
 %%compute ellipse
 o(:,:,d)=mean(COP(:,:),1); %%center of the confidence ellipse

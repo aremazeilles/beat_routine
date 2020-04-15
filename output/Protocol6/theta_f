@@ -1,0 +1,111 @@
+# Created by Octave 5.1.0, Tue Apr 14 14:54:25 2020 GMT <unknown@JuriTaborri>
+# name: theta_f
+# type: cell
+# rows: 2
+# columns: 8
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+N
+
+
+# name: <cell-element>
+# type: scalar
+42.004974386359628
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NE
+
+
+# name: <cell-element>
+# type: scalar
+44.645436133992277
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+E
+
+
+# name: <cell-element>
+# type: scalar
+43.15088639034844
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SE
+
+
+# name: <cell-element>
+# type: scalar
+39.044128158679825
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+S
+
+
+# name: <cell-element>
+# type: scalar
+41.300238898690139
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SW
+
+
+# name: <cell-element>
+# type: scalar
+44.51364936572466
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+W
+
+
+# name: <cell-element>
+# type: scalar
+44.845174990498109
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NW
+
+
+# name: <cell-element>
+# type: scalar
+39.92912204026684
+
+
+
+
+

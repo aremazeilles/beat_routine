@@ -1,0 +1,105 @@
+# Created by Octave 5.1.0, Tue Apr 14 15:35:18 2020 GMT <unknown@JuriTaborri>
+# name: phi
+# type: cell
+# rows: 4
+# columns: 4
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 3
+NaN
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 4
+haed
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 5
+trunk
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 6
+pelvis
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+AP
+
+
+# name: <cell-element>
+# type: scalar
+180
+
+
+# name: <cell-element>
+# type: scalar
+0
+
+
+# name: <cell-element>
+# type: scalar
+0
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+ML
+
+
+# name: <cell-element>
+# type: scalar
+0
+
+
+# name: <cell-element>
+# type: scalar
+180
+
+
+# name: <cell-element>
+# type: scalar
+0
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+V
+
+
+# name: <cell-element>
+# type: scalar
+180
+
+
+# name: <cell-element>
+# type: scalar
+180
+
+
+# name: <cell-element>
+# type: scalar
+180
+
+
+
+
+

@@ -1,0 +1,111 @@
+# Created by Octave 5.1.0, Tue Apr 14 15:59:08 2020 GMT <unknown@JuriTaborri>
+# name: EA_p
+# type: cell
+# rows: 2
+# columns: 8
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+N
+
+
+# name: <cell-element>
+# type: scalar
+1.5995076192161574e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NE
+
+
+# name: <cell-element>
+# type: scalar
+1.58698299785724e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+E
+
+
+# name: <cell-element>
+# type: scalar
+1.5845466716857175e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SE
+
+
+# name: <cell-element>
+# type: scalar
+1.5602300068297108e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+S
+
+
+# name: <cell-element>
+# type: scalar
+1.5664815212180332e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+SW
+
+
+# name: <cell-element>
+# type: scalar
+1.5656899306405953e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 1
+W
+
+
+# name: <cell-element>
+# type: scalar
+1.5360456384055305e-06
+
+
+
+# name: <cell-element>
+# type: sq_string
+# elements: 1
+# length: 2
+NW
+
+
+# name: <cell-element>
+# type: scalar
+1.5551270949504362e-06
+
+
+
+
+

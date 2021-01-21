@@ -16,7 +16,7 @@ platformdata=csv2cell(PlatformData, ";");
 platformdata_header=platformdata(1,:);
 cx=find(strcmpi(platformdata_header, 'CoP_x'), 1); %% cop x component column
 cy=find(strcmpi(platformdata_header, 'CoP_y'), 1); %% cop y component column
-cop=cell2mat(platformdata(2:end,cx:cy))*0.001; %converted in m
+cop=fillgaps(cell2mat(platformdata(2:end,cx:cy)))*0.001; %converted in m
 z=chi2inv(0.95,2); %%compute the probability associated with 0.95 confidence level (chi distribution)
 
 p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column

@@ -47,8 +47,8 @@ if aa==1;
    [V D W]=svd(C);
    e0=V(:,1);
    e1=V(:,2);
-   a=sqrt(z*D(1,1));
-   b=sqrt(z*D(2,2));
+   a=sqrt(z)*D(1,1);
+   b=sqrt(z)*D(2,2);
    EA_p(d)=a*b*pi;  %%ellipse area
    clear COP x y Cxx Cyy Cxy e0 e1 V D W a b
   endfor

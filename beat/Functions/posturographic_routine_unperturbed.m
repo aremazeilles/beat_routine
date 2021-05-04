@@ -50,8 +50,8 @@ if aa==1;
   [V D W]=svd(C);
   e0=V(:,1);
   e1=V(:,2);
-  a=sqrt(z)*D(1,1));
-  b=sqrt(z)*D(2,2));
+  a=sqrt(z)*D(1,1);
+  b=sqrt(z)*D(2,2);
   EA=a*b*pi;  %%ellipse area
 elseif (aa==2)
   for e=1:length(event)-1
@@ -71,8 +71,8 @@ elseif (aa==2)
    [V D W]=svd(C);
    e0=V(:,1);
    e1=V(:,2);
-   a=sqrt(z*D(1,1));
-   b=sqrt(z*D(2,2));
+   a=sqrt(z)*D(1,1);
+   b=sqrt(z)*D(2,2);
    EA(e)=a*b*pi;  %%ellipse area
    clear COP
   end

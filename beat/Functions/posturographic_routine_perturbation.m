@@ -77,51 +77,10 @@ else aa==2
  direction={'AP', 'ML', 'V', 'M'}; %%direction label in sinusoidal protocols
 endif
 
-%%save file
-file_id=fopen(strcat(outFolder,"/pi_plp.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'vector'\n");
-fprintf(file_id, "measure_unit: 'm'\n");
-label_str="label: [";
-for i=1:length(direction)
-  label_str=sprintf("%s'%s'",label_str,char(direction(i)));
-  if i!=length(direction)
-    label_str=sprintf("%s, ", label_str);
-  endif
-endfor
-label_str=sprintf("%s]\n",label_str);
-fprintf(file_id,label_str);
+%% save files
+filename = strcat(outFolder,"/pi_plp.yaml");
+store_pi_vector(filename, 3, 'm', direction, PL_p);
 
-pl_str="value: [";
-for i=1:length(PL_p)
-  pl_str=sprintf("%s%.3f",pl_str,PL_p(i));
-  if i!=length(PL_p)
-    pl_str=sprintf("%s, ", pl_str);
-  endif
-endfor
-pl_str=sprintf("%s]\n",pl_str);
-fprintf(file_id,pl_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_eap.yaml");
+store_pi_vector(filename, 6, 'm^2', direction, EA_p);
 
-file_id=fopen(strcat(outFolder,"/pi_eap.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'vector'\n");
-fprintf(file_id, "measure_unit: 'm^2'\n");
-label_str="label: [";
-for i=1:length(direction)
-  label_str=sprintf("%s'%s'",label_str,char(direction(i)));
-  if i!=length(direction)
-    label_str=sprintf("%s, ", label_str);
-  endif
-endfor
-label_str=sprintf("%s]\n",label_str);
-fprintf(file_id,label_str);
-
-ea_str="value: [";
-for i=1:length(EA_p)
-  ea_str=sprintf("%s%.6f",ea_str,EA_p(i));
-  if i!=length(EA_p)
-    ea_str=sprintf("%s, ", ea_str);
-  endif
-endfor
-ea_str=sprintf("%s]\n",ea_str);
-fprintf(file_id,ea_str);
-fclose(file_id);

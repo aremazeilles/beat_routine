@@ -149,19 +149,9 @@ for ss=2:sy_l
     end
 end
 
-%%save NoS value in .yaml file
-file_id=fopen(strcat(outFolder,"/pi_rnos.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'adim'\n");
-NoS_str="value: ";
-NoS_str=sprintf("%s%.f\n",NoS_str,NoS_r);
-fprintf(file_id,NoS_str);
-fclose(file_id);
+%% save NoS value in .yaml file
+filename = strcat(outFolder,"/pi_rnos.yaml");
+store_pi_scalar(filename, 0, 'adim', NoS_r);
 
-file_id=fopen(strcat(outFolder,"/pi_lnos.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'adim'\n");
-NoSl_str="value: ";
-NoSl_str=sprintf("%s%.f\n",NoSl_str,NoS_l);
-fprintf(file_id,NoSl_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_lnos.yaml");
+store_pi_scalar(filename, 0, 'adim', NoS_l);

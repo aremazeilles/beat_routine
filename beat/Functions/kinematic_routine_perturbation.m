@@ -65,31 +65,6 @@ end
 
 ROM_p=permute(ROM,[3,2,1]);
 
-%%save ROMp value in .yaml file
-file_id=fopen(strcat(outFolder,"/pi_romp.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'matrix'\n");
-fprintf(file_id, "measure_unit: '°'\n");
-label_str="col_label: [";
-for i=1:size(angle_label,2)
-  label_str=sprintf("%s'%s'",label_str,char(angle_label(i)));
-   if i!=size (angle_label,2)
-    label_str=sprintf("%s, ", label_str);
-  endif
-endfor
-label_str=sprintf("%s]\n",label_str);
-fprintf(file_id,label_str);
-rom_str="value: [[";
-for i=1:size(ROM_p,1)
-  for j=1:size(ROM_p,2)
-    rom_str=sprintf("%s%.2f",rom_str,ROM_p(i,j));
-      if j!=size (ROM_p,2)
-        rom_str=sprintf("%s ", rom_str);
-      elseif j==size (ROM_p,2) && i==size (ROM_p,1)
-        rom_str=sprintf("%s]]\n",rom_str);
-      else
-        rom_str=sprintf("%s],\n        [", rom_str);
-      endif
-  endfor
-endfor
-fprintf(file_id,rom_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_romp.yaml")
+
+store_pi_labelled_matrix(filename, 2, '°', {}, angle_label, ROM_p)

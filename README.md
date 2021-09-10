@@ -193,6 +193,25 @@ Assuming the `tests/protocol1/input` contains the input data, and that the direc
 ```shell
 docker run --rm -v $PWD/tests/data/protocol1/input:/in -v $PWD/out_tests:/out beat_routine ./run_protocol1 /in/jointAngles.csv /in/platformData.csv /in/emg.csv /out
 ```
+## Testing
+
+All scripts are provided with reference input and related output files.
+Under linux, an automatic regression testing can be launched, making sure all scripts generate the recorded output files, given the recorded input files.
+
+This is based on the [Eurobench docker testing tool](https://github.com/eurobench/docker_test).
+The test plan, related to the script calls previously listed, is in file [tests/test_plan.xml](tests/test_plan.xml).
+
+Assuming the docker image has been created using name `pi_csic_manip`, the testing can be launched locally using (`python3` is required):
+
+```shell
+# only done once
+wget -O test_docker_call.py https://raw.githubusercontent.com/eurobench/docker_test/master/test_docker_call.py
+export DOCKER_IMAGE='beat_routine'
+export TEST_PLAN='tests/test_plan.xml'
+python3 test_docker_call.py
+```
+
+If any of the scripts does not generate the expected output files, the python file will state it.
 
 ## Acknowledgements
 

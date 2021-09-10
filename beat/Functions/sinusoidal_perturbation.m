@@ -126,44 +126,13 @@ endif
 G=cat(2, G_ap',G_ml',G_v');
 phi=cat(2,phi_ap',phi_ml',phi_v');
 
-%save file
-file_id=fopen(strcat(outFolder,"/pi_g.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'matrix'\n");
-fprintf(file_id, "measure_unit: '%%'\n");
-g_str="value: [";
-for i=1:size(G,1)
-  for j=1:size(G,2)
-    g_str=sprintf("%s%.2f",g_str,G(i,j));
-     if j!=size(G,2)
-      g_str=sprintf("%s ", g_str);
-     elseif j==size(G,2) && i==size(G,1)
-      g_str=sprintf("%s]\n",g_str);
-     else
-      g_str=sprintf("%s;\n        ", g_str);
-     endif
-  endfor
-endfor
-fprintf(file_id,g_str);
-fclose(file_id);
+% save files
+filename = strcat(outFolder,"/pi_g.yaml");
+store_pi_labelled_matrix(filename, 2, '%', {}, {}, G);
 
-file_id=fopen(strcat(outFolder,"/pi_phi.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'matrix'\n");
-fprintf(file_id, "measure_unit: '°'\n");
-phi_str="value: [";
-for i=1:size(phi,1)
-  for j=1:size(phi,2)
-   phi_str=sprintf("%s%.2f",phi_str,phi(i,j));
-    if j!=size (phi,2)
-     phi_str=sprintf("%s ", phi_str);
-    elseif j==size (phi,2) && i==size (phi,1)
-     phi_str=sprintf("%s]\n",phi_str);
-    else
-     phi_str=sprintf("%s;\n        ", phi_str);
-    endif
-  endfor
-endfor
-fprintf(file_id,phi_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_phi.yaml");
+store_pi_labelled_matrix(filename, 2, '°', {}, {}, phi)
+
 
 
 

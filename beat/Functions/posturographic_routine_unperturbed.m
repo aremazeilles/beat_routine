@@ -86,39 +86,16 @@ else
   return;
 endif
 
-%%save file
-file_id=fopen(strcat(outFolder,"/pi_plap.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'm'\n");
-plap_str="value: ";
-plap_str=sprintf("%s%.3f",plap_str,PL_AP);
-plap_str=sprintf("%s\n",plap_str);
-fprintf(file_id,plap_str);
-fclose(file_id);
+%% save files
+filename = strcat(outFolder,"/pi_plap.yaml");
+store_pi_scalar(filename, 3, 'm', PL_AP);
 
-file_id=fopen(strcat(outFolder,"/pi_plml.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'm'\n");
-plml_str="value: ";
-plml_str=sprintf("%s%.3f",plml_str,PL_ML);
-plml_str=sprintf("%s\n",plml_str);
-fprintf(file_id,plml_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_plml.yaml");
+store_pi_scalar(filename, 3, 'm', PL_ML);
 
-file_id=fopen(strcat(outFolder,"/pi_pl.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'm'\n");
-pl_str="value: ";
-pl_str=sprintf("%s%.3f",pl_str,PL);
-pl_str=sprintf("%s\n",pl_str);
-fprintf(file_id,pl_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_pl.yaml");
+store_pi_scalar(filename, 3, 'm', PL);
 
-file_id=fopen(strcat(outFolder,"/pi_ea.yaml"),'w'); %%open file to write into
-fprintf(file_id, "type: 'scalar'\n");
-fprintf(file_id, "measure_unit: 'm^2'\n");
-ea_str="value: ";
-ea_str=sprintf("%s%.6f",ea_str,EA);
-ea_str=sprintf("%s\n",ea_str);
-fprintf(file_id,ea_str);
-fclose(file_id);
+filename = strcat(outFolder,"/pi_ea.yaml");
+store_pi_scalar(filename, 6, 'm^2', EA);
+

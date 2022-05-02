@@ -49,7 +49,7 @@ else
   fprintf('Same sample frequency\n')
 endif
 
-p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column
+p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation direction column
 
 if platformdata{2,p} ==7 %%  7 represents the sinusoidal perturbation protocol

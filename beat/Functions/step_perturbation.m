@@ -26,7 +26,7 @@ delta_t_platform=diff(time_vector_platform,1);
 fs_platform=round(1.0/mean(delta_t_platform));
 t=round(1.5*fs_platform); %variable need to cut the last 1.5 s of the angle for computation of delta_theta
 
-p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column
+p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation direction column
 
 if platformdata{2,p} ==6 %%6 represents the step perturbation protocol with uneven surface

@@ -19,7 +19,7 @@ z=chi2inv(0.95,2); %%compute the probability associated with 0.95 confidence lev
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation direction column
 direction=cell2mat(platformdata(2:end,per_dir));
 
-p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column
+p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 %%understand which is the protocol
 if (platformdata{2,p}==7) %%7 represents the sinusoidal perturbation protocol
   aa=2;

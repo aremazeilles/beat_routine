@@ -36,7 +36,7 @@ else
   fprintf('Same sample frequency\n')
 end
 
-p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column
+p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 er=find(strcmpi(platformdata_header, 'right_stride'), 1); %% right_stride column
 el=find(strcmpi(platformdata_header, 'left_stride'), 1); %%left_stride column
 

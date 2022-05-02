@@ -19,7 +19,7 @@ cy=find(strcmpi(platformdata_header, 'CoP_y'), 1); %% cop y component column
 cop=fillgaps(cell2mat(platformdata(2:end,cx:cy)))*0.001; %converted in m
 z=chi2inv(0.95,2); %%compute the probability associated with 0.95 confidence level (chi distribution)
 
-p=find(strcmpi(platformdata_header, 'protocol_number'), 1); %%protocol number column
+p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 er=find(strcmpi(platformdata_header, 'right_stride'), 1); %%right stride column
 %%understand which is the protocol
 if (platformdata{2,p}==2) %%2 represents the stepping protocol with uneven surface

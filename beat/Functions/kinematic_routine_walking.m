@@ -40,6 +40,7 @@ p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 er=find(strcmpi(platformdata_header, 'right_stride'), 1); %% right_stride column
 el=find(strcmpi(platformdata_header, 'left_stride'), 1); %%left_stride column
 
+
 %%angle partitioning
 if(platformdata{2,p}==1 || platformdata{2,p}==2) %% 1 and 2 represent the two stepping protocol
   event_1r=cell2mat(platformdata(2:end,er));

@@ -51,14 +51,18 @@ endif
 
 p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation direction column
+direction=cell2mat(platformdata(2:end,per_dir));
+dd=find(abs(diff(direction))==1)
+direction(dd(1)+1:dd(2))=1;
+direction(dd(3)+1:dd(4))=2;
+direction(dd(5)+1:dd(6))=3;
 
 if platformdata{2,p} ==7 %%  7 represents the sinusoidal perturbation protocol
-  interval=cell2mat(platformdata(2:end,per_dir));
 %%compute parameter for antero-posterior direction
   ax=find(strcmpi(platformdata_header, 'alfa'), 1); %% angle in antero-posterior direction column
   sin_ap1=cell2mat(platformdata(2:end,ax));
-  sin_ap=sin_ap1(interval(:,1)==1,1);
-  angle_ap=angle_matrix(interval(:,1)==1,[ap1,ap2,ap3]);
+  sin_ap=sin_ap1(direction(1,:)==1,1);
+  angle_ap=angle_matrix(direction(1,:)==1,[ap1,ap2,ap3]);
    for a=1:size(angle_ap,2)
      x=fft(sin_ap);
      xx=abs(x);
@@ -78,8 +82,8 @@ if platformdata{2,p} ==7 %%  7 represents the sinusoidal perturbation protocol
 %%compute parameter for medio-lateral direction
   ay=find(strcmpi(platformdata_header, 'beta'), 1); %% angle in medio-lateral direction column
   sin_ml1=cell2mat(platformdata(2:end,ay));
-  sin_ml=sin_ml1(interval(:,1)==2,1);
-  angle_ml=angle_matrix(interval(:,1)==2,[ml1,ml2,ml3]);
+  sin_ml=sin_ml1(direction(1,:)==2,1);
+  angle_ml=angle_matrix(direction(1,:)==2,[ml1,ml2,ml3]);
    for a=1:size(angle_ml,2)
      x=fft(sin_ml);
      xx=abs(x);
@@ -99,8 +103,8 @@ if platformdata{2,p} ==7 %%  7 represents the sinusoidal perturbation protocol
 %%compute parameter for vertical direction
   az=find(strcmpi(platformdata_header, 'gamma'), 1); %% angle in vertical direction column
   sin_v1=cell2mat(platformdata(2:end,az));
-  sin_v=sin_v1(interval(:,1)==3,1);
-  angle_v=angle_matrix(interval(:,1)==3,[v1,v2,v3]);
+  sin_v=sin_v1(direction(1,:)==3,1);
+  angle_v=angle_matrix(direction(1,:)==3,[v1,v2,v3]);
    for a=1:size(angle_v,2)
     x=fft(sin_v);
     xx=abs(x);
@@ -131,12 +135,4 @@ filename = strcat(outFolder,"/pi_g.yaml");
 store_pi_labelled_matrix(filename, 2, '%', {}, {}, G);
 
 filename = strcat(outFolder,"/pi_phi.yaml");
-store_pi_labelled_matrix(filename, 2, '°', {}, {}, phi)
-
-
-
-
-
-
-
-
+store_pi_labelled_matrix(filename, 2, '�', {}, {}, phi)

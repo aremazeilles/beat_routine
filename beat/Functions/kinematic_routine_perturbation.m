@@ -38,22 +38,28 @@ endif
 
 p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation_direction column
-el=find(strcmpi(platformdata_header, 'left_stride'), 1); %%left_stride column
 
 %%angle partitioning
 if(platformdata{2,p}==5 || platformdata {2,p}==6) %% 5 and 6 represent the step perturbation protocols
-  dir_1=cell2mat(platformdata(2:end,per_dir));
-  dir=find(diff(dir_1)==1);
+  direction=cell2mat(platformdata(2:end,per_dir));
+  dd=find(abs(diff(direction))==1)
+  direction(dd(1)+1:dd(2))=1;
+  direction(dd(3)+1:dd(4))=2;
+  direction(dd(5)+1:dd(6))=3;
+  direction(dd(7)+1:dd(8))=4;
+  direction(dd(11)+1:dd(12))=6;
+  direction(dd(13)+1:dd(14))=7;
+  direction(dd(15)+1:dd(16))=8;
 else
   fprintf('You have tried to lunch kinematic_routine_perturbation with a wrong protocol\n')
   fprintf('Provided protocol: %d, only accepts protocols 5 and 6\n', platformdata{2,p})
   return;
 endif
 
-for d=1:length(dir)-1
+for d=1:8
   for a=1:angle_number
-    dd=dir(2)-dir(1);
-    angle_matrix_part(:,a,d)=eventsnormalize(angle_matrix(:,a),[round(dir(d)) round(dir(d+1))],dd); %%normalize the frames within each direction
+    ddd=find(direction(:,1)=i);
+    angle_matrix_part(:,a,d)=eventsnormalize(angle_matrix(:,a),[round(ddd(1)) round(ddd(end))],500); %%normalize the frames within each direction
   end
 end
 
@@ -67,4 +73,4 @@ ROM_p=permute(ROM,[3,2,1]);
 
 filename = strcat(outFolder,"/pi_romp.yaml")
 
-store_pi_labelled_matrix(filename, 2, '°', {}, angle_label, ROM_p)
+store_pi_labelled_matrix(filename, 2, '�', {}, angle_label, ROM_p)

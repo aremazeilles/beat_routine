@@ -12,14 +12,14 @@ function [PL_p EA_p]=posturographic_routine_perturbation(PlatformData, outFolder
 
 platformdata=csv2cell(PlatformData, ";");
 platformdata_header=platformdata(1,:);
-cx=find(strcmpi(platformdata_header, 'CoP_x'), 1); %% cop x component column
-cy=find(strcmpi(platformdata_header, 'CoP_y'), 1); %% cop y component column
-cop=fillgaps(cell2mat(platformdata(2:end,cx:cy)))*0.001; %converted in m
+cx=find(strcmpi(platformdata_header, 'cop_x'), 1); %% cop x component column
+cy=find(strcmpi(platformdata_header, 'cop_y'), 1); %% cop y component column
+cop=(cell2mat(platformdata(2:end,cx:cy))); 
 z=chi2inv(0.95,2); %%compute the probability associated with 0.95 confidence level (chi distribution)
 per_dir=find(strcmpi(platformdata_header, 'pert_direction'), 1); %% perturbation direction column
 direction=cell2mat(platformdata(2:end,per_dir));
-
 p=find(strcmpi(platformdata_header, 'protocol'), 1); %%protocol number column
+
 %%understand which is the protocol
 if (platformdata{2,p}==7) %%7 represents the sinusoidal perturbation protocol
   aa=2;
@@ -32,11 +32,20 @@ else
 endif
 
 if aa==1;
+dd=find(abs(diff(direction))==1)
+direction(dd(1)+1:dd(2))=1;
+direction(dd(3)+1:dd(4))=2;
+direction(dd(5)+1:dd(6))=3;
+direction(dd(7)+1:dd(8))=4;
+direction(dd(11)+1:dd(12))=6;
+direction(dd(13)+1:dd(14))=7;
+direction(dd(15)+1:dd(16))=8;
+
   for d=1:8 %%number of directions in case of step perturbations
-   COP=cop(direction(:,1)==d,:);
+   COP=cop(direction(1,:)==d,:);
    PL_p(d)=sum(sqrt((diff(COP(:,1)).^2) + (diff(COP(:,2)).^2))); %%path lenght resultant
    %%compute ellipse
-   o(:,:,d)=mean(COP(:,:),1); %%center of the confidence ellipse
+   o=mean(COP(:,:),1); %%center of the confidence ellipse
    nF=size(COP,1);
    x=COP(:,1)-repmat(o(:,1),nF,1);
    y=COP(:,2)-repmat(o(:,2),nF,1);
@@ -49,16 +58,21 @@ if aa==1;
    e1=V(:,2);
    a=sqrt(z)*D(1,1);
    b=sqrt(z)*D(2,2);
-   EA_p(d)=a*b*pi;  %%ellipse area
-   clear COP x y Cxx Cyy Cxy e0 e1 V D W a b
+   EA_p(d)=a*b*pi;  %%ellipse area in m^2
+   clear COP o x y Cxx Cyy Cxy e0 e1 V D W a b
   endfor
- direction={'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'}; %%direction label in step protocols
+ direction2={'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'}; %%direction label in step protocols
 else aa==2
+dd=find(abs(diff(direction))==1);
+direction(dd(1)+1:dd(2))=1;
+direction(dd(3)+1:dd(4))=2;
+direction(dd(5)+1:dd(6))=3;
+direction(dd(7)+1:dd(8))=4;
   for d=1:4 %%number of directions in case of sinusoidal perturbations
    COP=cop(direction(:,1)==d,:);
    PL_p(d)=sum(sqrt((diff(COP(:,1)).^2) + (diff(COP(:,2)).^2))); %%path lenght resultant
    %%compute ellipse
-   o(:,:,d)=mean(COP(:,:),1); %%center of the confidence ellipse
+   o=mean(COP(:,:),1); %%center of the confidence ellipse
    nF=size(COP,1);
    x=COP(:,1)-repmat(o(:,1),nF,1);
    y=COP(:,2)-repmat(o(:,2),nF,1);
@@ -72,15 +86,14 @@ else aa==2
    a=sqrt(z)*D(1,1);
    b=sqrt(z)*D(2,2);
    EA_p(d)=a*b*pi;  %%ellipse area
-   clear COP x y Cxx Cyy Cxy e0 e1 V D W a b
+   clear COP o x y Cxx Cyy Cxy e0 e1 V D W a b
   endfor
- direction={'AP', 'ML', 'V', 'M'}; %%direction label in sinusoidal protocols
+ direction2={'AP', 'ML', 'V', 'M'}; %%direction label in sinusoidal protocols
 endif
 
 %% save files
 filename = strcat(outFolder,"/pi_plp.yaml");
-store_pi_vector(filename, 3, 'm', direction, PL_p);
+store_pi_vector(filename, 3, 'm', direction2, PL_p);
 
 filename = strcat(outFolder,"/pi_eap.yaml");
-store_pi_vector(filename, 6, 'm^2', direction, EA_p);
-
+store_pi_vector(filename, 6, 'm^2', direction2, EA_p);
